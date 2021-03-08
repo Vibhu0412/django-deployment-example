@@ -1,0 +1,22 @@
+{%extends 'basic_app/basic_app_base.html'%}
+{% block body_block%}
+  <div class="jumbotron">
+      <h1>Welcome to school detail page</h1>
+      <h2>School details</h2>
+        <p>{{school_detail.name}}</p>
+        <p>Principal:{{school_detail.principal}}</p>
+      <p>Location : {{school_detail.location}}</p>
+      <h2>Students:</h2>
+
+      {% for student in school_detail.students.all %}
+      <!-- students come from model.py where school is related to Student class -->
+        <p>{{student.name}} who is {{student.age}} years old.</p>
+      {% endfor %}
+
+  </div>
+
+  <div class="container">
+    <p> <a class="btn btn-warning" href="{% url 'basic_app:update' pk=school_detail.pk %}">Update</a> </p>
+
+  </div>
+{% endblock %}
