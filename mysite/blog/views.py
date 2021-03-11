@@ -1,8 +1,10 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.utils import timezone
 from blog.models import Post,Comment
-from blog.forms import PostForm,CommentForm
-from django.urls import reverse_lazy
+from blog.forms import PostForm,CommentForm,NewUserForm
+from django.urls import reverse_lazy,reverse
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin #for class based views
 from django.views.generic import (TemplateView, ListView,DetailView, CreateView, UpdateView, DeleteView)
@@ -89,3 +91,28 @@ def comment_remove(request,pk):
     comment.delete()
 
     return redirect('post_detail', pk=post.pk)
+
+
+
+
+# @login_required #will work only if user is logged in
+# def user_logout(request):
+#     logout(request)
+#     return redirect('blog/post_list.html')
+
+
+#######################
+### Register ###
+######################
+
+def register(request):
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request,user)
+            messages.success(request,"Registration successful.")
+            return redirect("blog:post_list")
+        messages.error(request,"Unsuccessful registration. Invalid Information")
+    form = NewUserForm
+    return render(request,"blog/register.html", {"register_form" : form})

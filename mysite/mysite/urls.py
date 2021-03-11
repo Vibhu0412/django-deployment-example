@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth import logout
+from blog import views
 # https://github.com/Mischback/django-project-skeleton/issues/3-------shoio comment
 
 
@@ -25,5 +27,6 @@ urlpatterns = [
     path('accounts/login/',LoginView.as_view(),name='login'),
     # login and logout are different in current django
     # dont follow the video lecture...use ##Login.as_view()## bcz it is inbuilt in library
-    path('accounts/logout/',LogoutView.as_view(),name='logout',kwargs={'next_page':'/'}),
+    path('accounts/logout/',LogoutView.as_view(),name='logout',kwargs={'next_page': '/'}),
+    #path('',views.user_logout,name='logout')
 ]

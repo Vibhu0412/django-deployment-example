@@ -1,6 +1,8 @@
 from django.urls import path
 from blog import views
 
+# app_name = 'blog'
+
 urlpatterns = [
     path('',views.PostListView.as_view(),name ='post_list'),
 
@@ -17,4 +19,7 @@ urlpatterns = [
     path('comment/<int:pk>/approve/', views.comment_approve, name ='comment_approve'),
     path('comment/<int:pk>/remove/', views.comment_remove, name = 'comment_remove'),
     path('post/<int:pk>/publish/',views.post_publish, name = 'post_publish' ),
+
+    #REGISTER
+    path('register/', views.register, name='register')
 ]

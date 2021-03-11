@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content%}
+{% load crispy_forms_tags %}
 <div class="jumbotron">
   <h2>Please Login:</h2>
   <h3>(Must be a superuser. Please check with site admin)</h3>
@@ -15,6 +16,6 @@
       <!-- to redirect after login -->
       <input type="hidden" name="next" value="{{next}}">
   </form>
-
+  <p class="text-center">Dont have an account? <a href="{% url 'register' %}">Create an account</a>.</p>
 </div>
 {%endblock%}

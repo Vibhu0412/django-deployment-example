@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,4 @@ STATIC_URL = '/static/'
 STATIC_ROOT = Path(BASE_DIR,'static')
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'post_list'
